@@ -17,8 +17,74 @@
             return value;
         };
 
-        let fuc  = value => value 
-        
+        let fuc = value => value
+
+
+        // function a() {
+        //     var name = "测试闭包";
+        //     function b() {
+        //         // console.log(name);
+        //         alert(name)
+        //     }
+        //     // 此处产生闭包 
+        //     b();
+        // }
+        // a();
+
+        //     function a() {
+        //         var name = "xuxu";
+        //         function b() {
+        //             alert(name)
+        //         }
+        //         return b;
+        //     }
+
+        //   //  a()()
+        //     var c = a();//函数表达式
+        //     // 此处产生闭包 此处的c函数其实就是a函数
+        //     c();
+
+
+        // function foo() {
+        //     var a = 2;
+        //     function baz() {
+        //         // 2
+        //        // alert(a)
+        //          console.log(a);
+        //     }
+        //     bar(baz);
+        // }
+
+        // function bar(fn) {
+        //     // 大家快看呀，这就是闭包！
+        //     fn();
+        // }
+
+        // function add(x) {
+        //     return function _add(y) {
+        //         return x + y
+        //     }
+        // }
+
+        // var sum = add(2)(3)
+        // console.log(sum)
+
+        var name = "window"
+        var p = {
+            name: 'Ken',
+            getName: function () {
+                var self = this;
+                // 内部函数对变量 this 的引用
+                return function () {
+                    return self.name;
+                }
+            }
+        }
+        var getName = p.getName()
+        var _name = getName()
+        console.log(_name)
+
+
     </script>
 </body>
 
