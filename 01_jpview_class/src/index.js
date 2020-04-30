@@ -1,24 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // 继承React.Component表示App是一个组件
-class Counter  extends React.Component{
+class TodoList   extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            num:1
+            text:'',
+            todos: ['Learn React', 'Learn Ant-design', 'Learn Koa'],
         }
+        this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this) // // 把handleClick()方法绑定到当前对象Counter上
     }
 
-    handleClick(){
+ 
+     // 生命方法--组件渲染完成，只执行一次
+    componentDidMount(){
+       //alert('componentDidMount 函数触发')
+    }
+    // 生命方法--避免组件重复或者无意义渲染
+    componentWillUpdate(nextProps, nextState){
+        console.log(nextState)
+         if(nextProps.num%2){
+             return true
+         }
+         return false
+    }
+    handleClick() {
+        if(this.state.text){
+            this.setState(state =>({
+                
+            }))
+        }
+    }
+    handleChange(e){
         this.setState({
-            num:this.state.num + 1
+            text: e.target.value
         })
     }
     render(){
         return (
             <div>
-               <p>{this.state.num}</p>
+                 {this.state.text}
+                <input type="text" value={this.state.text}  onChange={this.handleChange}></input>
                 <button onClick={this.handleClick}>click</button>
             </div>
         )
@@ -26,8 +49,8 @@ class Counter  extends React.Component{
 }
 
 
-// ReactDOM.render()方法把 App中的内容追加到 index.html 中 <div id="root">的标签上
-ReactDOM.render(<Counter />, document.querySelector('#root'))
+// ReactDOM.render()方法把 class对象中的内容追加到 index.html 中 <div id="root">的标签上
+ReactDOM.render(<TodoList />, document.querySelector('#root'))
 
 
 
